@@ -1,0 +1,20 @@
+'use strict'
+
+var http = require ('http');
+
+var url = process.argv[2];
+
+http.get(url, function (res) {
+	res.setEncoding('utf8');
+	var body = '';
+	res.on('data', function (chunk) {
+		body += chunk;
+	});
+	res.on('end', function () {
+		console.log(body.length);
+		console.log(body);
+	});
+	res.on('error', function (err) {
+		console.log(err);
+	});
+});
